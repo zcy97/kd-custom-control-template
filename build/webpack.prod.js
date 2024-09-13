@@ -20,7 +20,13 @@ module.exports = merge(common, {
   },
   plugins: [
     new CopyPlugin({
-      patterns: [{ from: path.resolve(__dirname, '../public'), to: path.resolve(__dirname, '../dist') }],
+      patterns: [
+        {
+          from: path.resolve(__dirname, '../public'),
+          to: path.resolve(__dirname, '../dist'),
+          noErrorOnMissing: true,
+        },
+      ],
     }),
   ],
 })
