@@ -2,7 +2,6 @@ const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const isProduction = process.env.NODE_ENV === 'production'
 const LESS_NAME = isProduction ? '[hash:base64:8]' : '[name]_[local]_[hash:base64:4]'
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: isProduction ? path.resolve(__dirname, '../src/prodIndex') : path.resolve(__dirname, '../src/devIndex'),
@@ -72,15 +71,6 @@ module.exports = {
       // 定义输出文件名和目录
       filename: 'css/index.css',
     }),
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../public'),
-        to: path.resolve(__dirname, '../dist'),
-        globOptions: {
-          dot: true, // 允许处理空文件夹
-        },
-      },
-    ]),
   ],
   cache: {
     type: 'filesystem',
