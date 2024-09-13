@@ -13,12 +13,12 @@ module.exports = merge(common, {
     compress: false, //开发环境下不用开启gzip，提升热更新的速度
     // open: true, // 打开浏览器窗口
     static: {
-      directory: path.join(__dirname, '../public'), //从public获取静态资源
+      directory: path.join(__dirname, '../static'), //从static获取静态资源
     },
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../public/index.html'),
+      template: path.resolve(__dirname, '../static/index.html'),
       inject: true, //自动注入静态资源
     }),
   ],

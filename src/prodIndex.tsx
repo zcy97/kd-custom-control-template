@@ -19,8 +19,6 @@ import {
   IThemeUpdateProps,
   IDataUpdateProps,
   ILockUpdateProps,
-  ICardRowDataUpdateProps,
-  IGridRowDataUpdateProps,
   ComponentInstance,
 } from '@/types'
 import { useEffect, useState } from 'react'
@@ -70,17 +68,15 @@ declare global {
       eventBus.pub(this.model, 'onLockUpdate', props)
     },
 
-    onCardRowDataUpdate: function (this: ComponentInstance, props: ICardRowDataUpdateProps) {
-      // 卡片行数据变更时触发
-      console.log('-----onCardRowDataUpdate', this.model, props)
-      eventBus.pub(this.model, 'onCardRowDataUpdate', props)
-    },
+    // onCardRowDataUpdate: function (this: ComponentInstance, props: ICardRowDataUpdateProps) {
+    //   // 卡片行数据变更时触发
+    //   console.log('-----onCardRowDataUpdate', this.model, props)
+    // },
 
-    onGridRowDataUpdate: function (this: ComponentInstance, props: IGridRowDataUpdateProps) {
-      // 单据体行数据变更时触发
-      console.log('-----onGridRowDataUpdate', this.model, props)
-      eventBus.pub(this.model, 'onGridRowDataUpdate', props)
-    },
+    // onGridRowDataUpdate: function (this: ComponentInstance, props: IGridRowDataUpdateProps) {
+    //   // 单据体行数据变更时触发
+    //   console.log('-----onGridRowDataUpdate', this.model, props)
+    // },
 
     handleDirective: function (customProps: TCustomProps, methodname: string, args: any[]) {
       // 这里的methodname 对应的是指令发过来定义的methodname，可根据方法名拿到对应的参数args
@@ -93,20 +89,26 @@ declare global {
   }
 
   var setHtml = function (model: TCustomModel, customProps: TCustomProps) {
-    const Root = (props: IRoot) => {
-      const { model, customProps } = props
-      const [newCustomProps, setNewCustomProps] = useState(customProps)
-      useEffect(() => {
-        const updateSub = eventBus.sub(model!, 'onPropsUpdate', (updateProps: any) => {
-          setNewCustomProps(updateProps)
-        })
-        return () => {
-          eventBus.unsub(updateSub)
-        }
-      }, [])
-      return <App model={model} customProps={newCustomProps} />
-    }
-    ReactDOM.render(<Root model={model} customProps={customProps} />, model.dom)
+    KDApi.loadFile('./css/index.css', model, () => {
+      const Root = (props: IRoot) => {
+        const { model, customProps } = props
+        const [newCustomProps, setNewCustomProps] = useState(customProps)
+        useEffect(() => {
+          const updateSub = eventBus.sub(model!, 'onPropsUpdate', (updateProps: any) => {
+            setNewCustomProps(updateProps)
+          })
+          return () => {
+            eventBus.unsub(updateSub)
+          }
+        }, [])
+        return (
+          <div data-control-name="${CONTROL_NAME}">
+            <App model={model} customProps={newCustomProps} />
+          </div>
+        )
+      }
+      ReactDOM.render(<Root model={model} customProps={customProps} />, model.dom)
+    })
   }
 
   // 注册自定义组件

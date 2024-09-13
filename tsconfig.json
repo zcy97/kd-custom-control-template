@@ -9,7 +9,6 @@
     "skipLibCheck": true, // 忽略所有的声明文件（ *.d.ts）的类型检查
     "forceConsistentCasingInFileNames": true, // 禁止对同一个文件的不一致的引用
     "isolatedModules": true, // 将每个文件作为单独的模块
-    "noEmit": false, // 不输出文件,即编译后不会生成任何js文件
     "typeRoots": ["./typings.d.ts"], // 全局声明文件
     "paths": {
       "@/*": ["./src/*"] // 路径别名
