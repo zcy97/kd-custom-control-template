@@ -2,8 +2,6 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue2'
 import path from 'path'
 import { resolve } from 'path'
-import Components from 'unplugin-vue-components/vite'
-import { ElementUiResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -29,12 +27,7 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
-    plugins: [
-      vue(),
-      Components({
-        resolvers: [ElementUiResolver()],
-      }),
-    ],
+    plugins: [vue()],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'), // 将 '@' 指向 'src' 目录
