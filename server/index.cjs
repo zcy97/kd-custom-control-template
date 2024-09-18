@@ -3,7 +3,7 @@ const app = express()
 const path = require('path')
 const serveIndex = require('serve-index')
 const fs = require('fs-extra')
-const config = require('./config')
+const config = require('./config.cjs')
 const isvDir = path.join(__dirname, 'isv')
 const { isvId, moduleId, schemaId } = config
 
