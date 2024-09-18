@@ -12,7 +12,6 @@
     "server": "node ./server/index.cjs"
   },
   "dependencies": {
-    "element-plus": "^2.8.2",
     "less": "^4.2.0",
     "postal": "^2.0.6",
     "vue": "^3.4.29"
@@ -31,8 +30,6 @@
     "postcss-prefix-selector": "^1.16.1",
     "serve-index": "^1.9.1",
     "typescript": "~5.4.0",
-    "unplugin-auto-import": "^0.18.2",
-    "unplugin-vue-components": "^0.27.4",
     "vite": "^5.3.1",
     "vue-tsc": "^2.0.21"
   }
