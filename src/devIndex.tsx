@@ -4,7 +4,6 @@
 
 import ReactDOM from 'react-dom'
 import App from '@/components/App'
-import '@kdcloudjs/kdesign/dist/kdesign.css'
 
 ReactDOM.render(
   <>
