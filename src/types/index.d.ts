@@ -43,14 +43,18 @@ export interface TCustomModel {
   userDataReporting: (IObject) => void
 }
 
+export type TRegisterConfig = {
+  isMulLang?: boolean
+} & IObject
+
 export interface TKDApi {
   getHTMLStringBytemplate: (tpl: string, data: IObject) => void
-  getLangMsg: (model: TCustomModel, key: string, variables: any[]) => void
+  getLangMsg: (model: TCustomModel, key: string, variables?: any) => void
   getNameSpace: (model: TCustomModel) => void
   getTemplateStringByFilePath: (filePatch: string, model: TCustomModel, data: IObject) => void
   loadFile: (filePatch: string, model: TCustomModel, callback?: () => void) => void
   nameSpace: (model: TCustomModel) => void
-  register: (type: string, ctrl: (TCustomModel) => void, config?: { key: string; value: string }[]) => void
+  register: (type: string, ctrl: (TCustomModel) => void, config?: TRegisterConfig) => void
   template: (tpl: string, data: IObject) => void
   templateFilePath: (filePatch: string, model: TCustomModel, data: IObject) => void
 }
