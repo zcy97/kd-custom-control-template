@@ -1,5 +1,5 @@
 import { createApp, h } from 'vue'
-import Index from './Index.vue'
+import Index from '@/components/Index.vue'
 import eventBus from '@/utils/eventBus'
 import {
   TCustomProps,
