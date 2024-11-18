@@ -1,4 +1,4 @@
-# Vue 3 + TypeScript + Vite
+# Vue 2 + TypeScript + Vite
 
 #### 开发
 ```
