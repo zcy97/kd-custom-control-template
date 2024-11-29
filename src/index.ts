@@ -32,42 +32,11 @@ declare global {
       setHtml(this.model, props)
     },
 
-    onPropsUpdate: function (this: ComponentInstance, props: TCustomProps) {
+    update: function (this: ComponentInstance, props: TCustomProps) {
       // 任意props数据变更时触发
-      console.log('-----onPropsUpdate', this.model, props)
-      eventBus.pub(this.model, 'onPropsUpdate', props)
+      console.log('-----update', this.model, props)
+      eventBus.pub(this.model, 'update', props)
     },
-
-    onThemeUpdate: function (
-      this: ComponentInstance,
-      props: IThemeUpdateProps
-    ) {
-      // 主题变更时触发
-      console.log('-----onThemeUpdate', this.model, props)
-      eventBus.pub(this.model, 'onThemeUpdate', props)
-    },
-
-    onDataUpdate: function (this: ComponentInstance, props: IDataUpdateProps) {
-      // 控件数据变更时触发
-      console.log('-----onDataUpdate', this.model, props)
-      eventBus.pub(this.model, 'onDataUpdate', props)
-    },
-
-    onLockUpdate: function (this: ComponentInstance, props: ILockUpdateProps) {
-      // 控件锁定性变更时触发
-      console.log('-----onLockUpdate', this.model, props)
-      eventBus.pub(this.model, 'onLockUpdate', props)
-    },
-
-    // onCardRowDataUpdate: function (this: ComponentInstance, props: ICardRowDataUpdateProps) {
-    //   // 卡片行数据变更时触发
-    //   console.log('-----onCardRowDataUpdate', this.model, props)
-    // },
-
-    // onGridRowDataUpdate: function (this: ComponentInstance, props: IGridRowDataUpdateProps) {
-    //   // 单据体行数据变更时触发
-    //   console.log('-----onGridRowDataUpdate', this.model, props)
-    // },
 
     handleDirective: function (
       customProps: TCustomProps,
@@ -81,6 +50,46 @@ declare global {
     destoryed: function () {
       console.log('-----destoryed', this.model)
     },
+
+    // 以下生命周期在V7.0.1+版本支持
+
+    // onPropsUpdate: function (this: ComponentInstance, props: TCustomProps) {
+    //   // 任意props数据变更时触发
+    //   console.log('-----onPropsUpdate', this.model, props)
+    //   eventBus.pub(this.model, 'onPropsUpdate', props)
+    // },
+
+    // onThemeUpdate: function (
+    //   this: ComponentInstance,
+    //   props: IThemeUpdateProps
+    // ) {
+    //   // 主题变更时触发
+    //   console.log('-----onThemeUpdate', this.model, props)
+    //   eventBus.pub(this.model, 'onThemeUpdate', props)
+    // },
+
+    // onDataUpdate: function (this: ComponentInstance, props: IDataUpdateProps) {
+    //   // 控件数据变更时触发
+    //   console.log('-----onDataUpdate', this.model, props)
+    //   eventBus.pub(this.model, 'onDataUpdate', props)
+    // },
+
+    // onLockUpdate: function (this: ComponentInstance, props: ILockUpdateProps) {
+    //   // 控件锁定性变更时触发
+    //   console.log('-----onLockUpdate', this.model, props)
+    //   eventBus.pub(this.model, 'onLockUpdate', props)
+    // },
+
+    // onCardRowDataUpdate: function (this: ComponentInstance, props: ICardRowDataUpdateProps) {
+    //   // 卡片行数据变更时触发
+    //   console.log('-----onCardRowDataUpdate', this.model, props)
+    // },
+
+    // onGridRowDataUpdate: function (this: ComponentInstance, props: IGridRowDataUpdateProps) {
+    //   // 单据体行数据变更时触发
+    //   console.log('-----onGridRowDataUpdate', this.model, props)
+    // },
+
   }
 
   const setHtml = (model: TCustomModel, customProps: TCustomProps) => {
@@ -100,7 +109,7 @@ declare global {
         created() {
           this.updateSub = eventBus.sub(
             model!,
-            'onPropsUpdate',
+            'update',
             (updateProps: any) => {
               this.newCustomProps = updateProps
             }
